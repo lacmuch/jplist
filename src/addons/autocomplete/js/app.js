@@ -1,6 +1,10 @@
 (function(){
 	'use strict';	
 	
+	var getStatus = function(context, isDefault) {
+		return {action: 'filter', name: context.name, data: {filterType: 'TextFilter', value: context.params.view.params.selected}};
+	}
+
 	/**
 	* get control paths
 	* @param {Object} context
@@ -33,6 +37,11 @@
 			,ServerDataLoaded: '3'
 			,onSelect: '4'
 		};	
+
+		observer.on(observer.events.onSelect,function(){
+			var status = getStatus(context,false);
+			context.observer.trigger(context.observer.events.knownStatusesChanged, [[status]]);
+		});
 		
 		return observer;
 	};
@@ -95,6 +104,10 @@
 		);
 				
 		return jQuery.extend(this, context);
+	};
+	
+	Init.prototype.getStatus = function(isDefault){
+		return getStatus(this, isDefault);
 	};
 	
 	/**

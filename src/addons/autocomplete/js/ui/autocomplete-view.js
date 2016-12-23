@@ -245,6 +245,18 @@
 			//set data-length attribute
 			context.$placeholder.attr('data-length', 0);
 		}
+
+		//Set onclick for selection
+		var $dataItems = context.$placeholder.children();
+		$dataItems.on('click',function(e) {
+		  var $sel = $(e.target);
+		  context.params.selected=$sel.data('path');
+		  $dataItems.removeClass("autocomplete-active");
+		  $sel.addClass("autocomplete-active");
+		  context.$control.find("input").val($sel.eq(0).text());
+		  closeAll(context);		  
+		  context.scopeObserver.trigger(context.scopeObserver.events.onSelect);
+		})
 		
 		//set hidden content position
 		setVisibility(context);	
