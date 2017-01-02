@@ -50,7 +50,8 @@
 			,filterStatus
 			,paginaStatus;
 			
-		if(jQuery.trim(inputValue)){
+		//if(jQuery.trim(inputValue)){	//We need empty for initvalues
+		if(typeof inputValue !== 'undefined'){
 		
 			//update ajax data type - it could be 'html', 'xml' or 'json'
 			if(context.options.dataSource && context.options.dataSource.server && context.options.dataSource.server.ajax){
