@@ -2,7 +2,7 @@
 	'use strict';	
 	
 	var getStatus = function(context, isDefault) {
-		return {action: 'filter', name: context.name, data: {filterType: 'TextFilter', value: context.params.view.params.selected}};
+		return {action: 'filter', name: context.name, data: {filterType: 'TextFilter', value: context.params.view.params.selected, type: context.params.view.params.type}};
 	}
 
 	/**
@@ -82,6 +82,9 @@
 				
 				//callback
 				,onSuggest: context.$control.attr('data-onsuggest')
+
+				//type
+				,type: context.$control.attr('data-type')
 			}	
 		};
 		
